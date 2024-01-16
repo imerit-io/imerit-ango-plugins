@@ -60,6 +60,7 @@ env:
   REGION: YOUR_SERVICE_REGION
 
 jobs:
+  environment: ango-plugins-cloudrun
   deploy:
     # Add 'id-token' with the intended permissions for workload identity federation
     permissions:
