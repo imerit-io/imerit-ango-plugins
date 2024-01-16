@@ -1,11 +1,11 @@
-# This workflow build and push a Docker container to Google Artifact Registry and deploy it on Cloud Run when a commit is pushed to the $default-branch branch
+# This workflow build and push a Docker container to Google Artifact Container and deploy it on Cloud Run when a commit is pushed to the $default-branch branch
 #
 # Overview:
 #
 # 1. Authenticate to Google Cloud
-# 2. Authenticate Docker to Artifact Registry
+# 2. Authenticate Docker to Container Registry
 # 3. Build a docker container
-# 4. Publish it to Google Artifact Registry
+# 4. Publish it to Google Container Registry
 # 5. Deploy it to Cloud Run
 #
 # To configure this workflow:
@@ -13,7 +13,7 @@
 # 1. Ensure the required Google Cloud APIs are enabled:
 #
 #    Cloud Run            run.googleapis.com
-#    Artifact Registry    artifactregistry.googleapis.com
+#    Container Registry    containerregistry.googleapis.com
 #
 # 2. Create and configure Workload Identity Federation for GitHub (https://github.com/google-github-actions/auth#setting-up-workload-identity-federation)
 #
@@ -26,16 +26,15 @@
 #    Cloud Storage
 #      roles/storage.admin   (if using Google Container Registry (gcr) instead)
 #
-#    Artifact Registry
-#      roles/artifactregistry.admin     (project or repository level)
+#    Container Registry
+#      roles/container.admin     (project or repository level)
 #
 #    NOTE: You should always follow the principle of least privilege when assigning IAM roles
 #
 # 4. Create GitHub secrets for GCP_CREDENTIALS
 #
-# 5. Change the values for the GAR_LOCATION, SERVICE and REGION environment variables (below).
+# 5. Change the values for the  SERVICE and REGION environment variables (below).
 #
-# NOTE: To use Google Container Registry instead, replace ${{ env.GAR_LOCATION }}-docker.pkg.dev with gcr.io
 #
 # For more support on how to run this workflow, please visit https://github.com/marketplace/actions/deploy-to-cloud-run
 #
@@ -51,6 +50,12 @@ on:
   push:
     branches:
       - main
+      -
+env:
+  PROJECT_ID: ango-plugins
+  REGION: europe-west-3
+  REPOSITORY: plugin-rest-example
+  SERVICE: plugin-rest-example
 
 jobs:
   deploy:
