@@ -82,14 +82,14 @@ jobs:
         id: docker-auth
         uses: 'docker/login-action@v3'
         with:
-          registry: gcr.io
+          registry: ${{ env.REPOSITORY }}-docker.pkg.dev
           username: _json_key
           password: ${{ secrets.GCP_CREDENTIALS }}
 
       - name: Build and Push Container
         run: |-
-          docker build -t "gcr.io/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}:${{ github.sha }}" ./
-          docker push "gcr.io/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}:${{ github.sha }}"
+          docker build -t "${{ env.REPOSITORY }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}:${{ github.sha }}" ./
+          docker push "${{ env.REPOSITORY }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}:${{ github.sha }}"
 
       # END - Docker auth and build
 
@@ -100,7 +100,7 @@ jobs:
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
           # NOTE: If using a pre-built image, update the image name here
-          image: gcr.io/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}:${{ github.sha }}
+          image: ${{ env.REPOSITORY }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}:${{ github.sha }}
           # NOTE: You can also set env variables here:
           #  env_vars: |
           #  NODE_ENV=production
