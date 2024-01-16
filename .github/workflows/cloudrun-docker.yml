@@ -60,7 +60,7 @@ env:
   REGION: YOUR_SERVICE_REGION
 
 jobs:
-  environment: ango-plugins-cloudrun
+  environment: ango-plugins-cloudrun # You may optionally define some common envs and secret in environment to reuse
   deploy:
     # Add 'id-token' with the intended permissions for workload identity federation
     permissions:
