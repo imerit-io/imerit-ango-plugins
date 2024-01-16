@@ -55,7 +55,6 @@ env:
   PROJECT_ID: ango-plugins
   REGION: europe-west-3
   REPOSITORY: plugin-rest-example
-  SERVICE: plugin-rest-example
 
 jobs:
   deploy:
@@ -89,8 +88,8 @@ jobs:
 
       - name: Build and Push Container
         run: |-
-          docker build -t "gcr.io/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }}" ./
-          docker push "gcr.io/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }}"
+          docker build -t "gcr.io/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}:${{ github.sha }}" ./
+          docker push "gcr.io/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}:${{ github.sha }}"
 
       # END - Docker auth and build
 
@@ -101,7 +100,7 @@ jobs:
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
           # NOTE: If using a pre-built image, update the image name here
-          image: gcr.io/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }}
+          image: gcr.io/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}:${{ github.sha }}
           # NOTE: You can also set env variables here:
           #  env_vars: |
           #  NODE_ENV=production
