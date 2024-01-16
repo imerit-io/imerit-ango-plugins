@@ -54,7 +54,7 @@ env:
   REGION: europe-west-3
   GAR_LOCATION: europe
   REPOSITORY: ango-plugins
-  SERVICE: plugin-rest-example # Change this for new deployments
+  SERVICE: plugin-rest-example # Change this for new deployments with the name of Cloud Run Service
 
 jobs:
   deploy:
