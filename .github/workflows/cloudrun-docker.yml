@@ -51,11 +51,6 @@ on:
   push:
     branches:
       - $default-branch
-  workflow_dispatch:
-    environment:
-      description: 'Environment to run tests against'
-      type: environment
-      required: true
 
 env:
   PROJECT_ID: YOUR_PROJECT_ID # TODO: update Google Cloud project id
