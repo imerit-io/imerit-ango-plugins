@@ -51,7 +51,7 @@ on:
       -
 env:
   PROJECT_ID: ango-plugins
-  REGION: europe-west-3
+  REGION: europe-west3
   GAR_LOCATION: europe
   REPOSITORY: ango-plugins
   SERVICE: plugin-rest-example # Change this for new deployments with the name of Cloud Run Service
