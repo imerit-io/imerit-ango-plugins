@@ -1,4 +1,5 @@
 #https://aws.amazon.com/blogs/containers/deploy-applications-in-aws-app-runner-with-github-actions/
+#https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/
 name: Deploy to App Runner
 on:
   push:
