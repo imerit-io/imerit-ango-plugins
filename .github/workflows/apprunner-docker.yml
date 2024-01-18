@@ -52,6 +52,12 @@ jobs:
       - name: Deploy to App Runner Image
         id: deploy-apprunner
         uses: awslabs/amazon-app-runner-deploy@main
+        # Change your env variables
+        env:
+          CONNECTOR: REST
+          HOST: https://imeritapi.ango.ai
+          PLUGIN_ID: 65a62d6e4fc5ea00159f275e
+          PLUGIN_SECRET: b296dd2f-5a4c-4449-90ec-0851f67d33fa
         with:
           service: ${{ env.SERVICE }}
           image: ${{ steps.build-image.outputs.image }}
@@ -60,8 +66,6 @@ jobs:
           cpu : 1
           memory : 2
           port: 8080
-          # Deprecated: wait-for-service-stability: true
-          # The new way to control service stability timeout
           wait-for-service-stability-seconds: 1200
 
       - name: App Runner URL
