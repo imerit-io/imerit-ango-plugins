@@ -1,3 +1,7 @@
+from dotenv import load_dotenv
+
+load_dotenv()
+
 import os
 import re
 import json
@@ -9,9 +13,7 @@ from io import BytesIO
 from datetime import datetime
 from imerit_ango.sdk import SDK
 from imerit_ango.plugins import ExportPlugin, ExportResponse, run
-from dotenv import load_dotenv
 
-load_dotenv()
 
 HOST = os.environ['HOST']
 PLUGIN_ID = os.environ['PLUGIN_ID']
