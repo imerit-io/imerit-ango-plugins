@@ -1,7 +1,3 @@
-from dotenv import load_dotenv
-
-load_dotenv()
-
 import os
 import re
 import json
@@ -481,4 +477,4 @@ if __name__ == "__main__":
                           host=HOST,
                           version='v3')
 
-    run(plugin, host=HOST)
+    handler = run(plugin, host=HOST)
