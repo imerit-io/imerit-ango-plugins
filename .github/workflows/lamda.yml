@@ -6,7 +6,8 @@ on:
     branches:
       - main
 env:
-  AWS_DEFAULT_REGION: eu-central-1
+  AWS_REGION: eu-central-1
+  SAM_CLI_TELEMETRY: 0
 
 jobs:
   deploy:
@@ -22,6 +23,6 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_DEFAULT_REGION }}
+          aws-region: ${{ env.AWS_REGION }}
       - run: sam build
       - run: sam deploy --guided --debug
