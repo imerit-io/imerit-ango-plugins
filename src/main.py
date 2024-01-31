@@ -478,4 +478,4 @@ if __name__ == "__main__":
                           host=HOST,
                           version='v3')
 
-    handler = run(plugin, host=HOST)
+    run(plugin, host=HOST)
