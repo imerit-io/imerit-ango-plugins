@@ -7,7 +7,6 @@ on:
       - main
 env:
   AWS_REGION: eu-central-1
-  SAM_CLI_TELEMETRY: 0
 
 jobs:
   deploy:
@@ -25,4 +24,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
       - run: sam build
+      - run: export SAM_CLI_TELEMETRY=0
       - run: sam deploy --guided --debug
