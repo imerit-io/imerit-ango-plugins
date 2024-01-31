@@ -1,5 +1,6 @@
 # Deploying plugin as Lamda function using AWS SAM
 # https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html
+#https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/deploying-using-github.html
 # Use SAM with following user permissions: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/prerequisites.html#prerequisites-create-user
 on:
   push:
@@ -25,4 +26,4 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - run: sam build
       - run: export SAM_CLI_TELEMETRY=0
-      - run: sam deploy --guided --debug
+      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
