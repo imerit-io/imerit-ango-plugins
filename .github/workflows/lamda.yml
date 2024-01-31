@@ -26,4 +26,4 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - run: sam build
       - run: export SAM_CLI_TELEMETRY=0
-      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
+      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --resolve-s3
