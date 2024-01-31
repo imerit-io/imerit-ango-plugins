@@ -25,4 +25,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
       - run: sam build
-      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --resolve-s3
+      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --resolve-s3 --capabilities = CAPABILITY_NAMED_IAM --stack
