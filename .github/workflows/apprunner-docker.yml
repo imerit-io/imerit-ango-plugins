@@ -1,5 +1,6 @@
-#https://aws.amazon.com/blogs/containers/deploy-applications-in-aws-app-runner-with-github-actions/
+#Refer to following docs for setting up necessary AWS permissions:
 #https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/
+#https://aws.amazon.com/blogs/containers/deploy-applications-in-aws-app-runner-with-github-actions/
 name: Deploy to App Runner
 on:
   push:
@@ -7,9 +8,8 @@ on:
   workflow_dispatch: # Allow manual invocation of the workflow
 
 env:
-  AWS_REGION: eu-central-1
-  #ECR_REGISTRY: europe
-  ECR_REPOSITORY: ango-plugins
+  AWS_REGION: eu-central-1  # Change this to use another aws region
+  ECR_REPOSITORY: ango-plugins # Change this to use another ecr-repository
   SERVICE: plugin-rest-example # Change this for new deployments with the name of Cloud Run Service
 
 jobs:
