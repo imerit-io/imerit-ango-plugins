@@ -471,11 +471,10 @@ def tpt_export(data):
     return export_response_obj
 
 
-if __name__ == "__main__":
-    plugin = ExportPlugin(id=PLUGIN_ID,
-                          secret=PLUGIN_SECRET,
-                          callback=callback_function,
-                          host=HOST,
-                          version='v3')
+plugin = ExportPlugin(id=PLUGIN_ID,
+                      secret=PLUGIN_SECRET,
+                      callback=callback_function,
+                      host=HOST,
+                      version='v3')
 
-    run(plugin, host=HOST)
+handler = run(plugin, host=HOST)

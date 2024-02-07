@@ -13,7 +13,7 @@ Resources:
       FunctionName: "plugin-lamda-demo"
       MemorySize: 128
       CodeUri: src
-      Handler: plugins.connect_rest.handler
+      Handler: main.handler
       Runtime: python3.9
       Events:
         Api:
