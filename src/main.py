@@ -477,4 +477,4 @@ plugin = ExportPlugin(id=PLUGIN_ID,
                       host=HOST,
                       version='v3')
 
-handler = run(plugin, host=HOST)
+run(plugin, host=HOST)
