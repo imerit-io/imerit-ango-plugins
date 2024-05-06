@@ -176,7 +176,7 @@ def check_date(stage_history, start_date, end_date):
     return False
 
 
-def callback_function(**data):
+def callback_function(data):
     logger = data.get('logger')
 
     try:
