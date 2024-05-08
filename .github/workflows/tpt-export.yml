@@ -56,7 +56,7 @@ on:
       - main
     paths:
       - 'tpt-export/**' # Change this for new deployments with the name of Cloud Run Service
-  pull-request:
+  pull_request:
     branches:
       - main
     paths:
