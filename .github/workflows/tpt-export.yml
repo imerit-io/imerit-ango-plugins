@@ -43,19 +43,19 @@
 #   Principle of least privilege              - https://cloud.google.com/blog/products/identity-security/dont-get-pwned-practicing-the-principle-of-least-privilege
 
 name: Build and Deploy to Cloud Run
-
-on:
-  push:
-    branches:
-      - main
-      -
 env:
   PROJECT_ID: ango-plugins
   REGION: europe-west3
   GAR_LOCATION: europe
   REPOSITORY: ango-plugins
+  SERVICE: tpt-export # Change this for new deployments with the name of Cloud Run Service
 
-  SERVICE: plugin-rest-example # Change this for new deployments with the name of Cloud Run Service
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '${{ env.SERVICE }}/**'
 
 jobs:
   deploy:
@@ -89,7 +89,7 @@ jobs:
 
       - name: Build and Push Container
         run: |-
-          docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }}" ./
+          docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }}" ./${{ env.SERVICE }}
           docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE }}:${{ github.sha }}"
 
       # END - Docker auth and build
