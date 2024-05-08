@@ -7,4 +7,6 @@ RUN pip install -r src/requirements.txt
 #When plugin run with rest connector default port is 8080
 EXPOSE 8080
 
+RUN ls
+
 CMD ["python", "main.py"]

@@ -55,7 +55,12 @@ on:
     branches:
       - main
     paths:
-      - ${{ env.SERVICE }}/**
+      - 'tpt-export/**' # Change this for new deployments with the name of Cloud Run Service
+  pull-request:
+    branches:
+      - main
+    paths:
+      - 'tpt-export/**' # Change this for new deployments with the name of Cloud Run Service
 
 jobs:
   deploy:
