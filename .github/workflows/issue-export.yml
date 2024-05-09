@@ -111,6 +111,7 @@ jobs:
             HOST=https://imeritapi.ango.ai
             PLUGIN_ID=65a62d6e4fc5ea00159f275e
             PLUGIN_SECRET=b296dd2f-5a4c-4449-90ec-0851f67d33fa
+          no-allow-unauthenticated: false
 
       # If required, use the Cloud Run url output in later steps
       - name: Show Output

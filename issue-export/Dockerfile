@@ -4,7 +4,7 @@ ADD . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
 
-#Enable this line for GCP Cloud run
-#RUN nohup  python3 -m http.server 8080 &
+#When plugin run with rest connector default port is 8080
+EXPOSE 8080
 
 CMD ["python", "issue_export.py"]
