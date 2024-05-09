@@ -1,0 +1,7 @@
+{
+  "mode": "default",
+  "add_assignee_info": false,
+  "extract_metrics": false,
+  "verbose": false,
+  "verbose_frequency": 1000
+}

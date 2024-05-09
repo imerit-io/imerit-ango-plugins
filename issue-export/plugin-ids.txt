@@ -1,0 +1,3 @@
+HOST = "https://plugin.imerit.ango.ai"
+PLUGIN_ID = "65324e8a93bdc0001542c819"
+PLUGIN_SECRET = "5f3b3528-b598-4489-8aff-b46e8d166a40"
