@@ -1,0 +1,11 @@
+{
+  "start_date": "2020-12-31",
+  "end_date": null,
+  "duration_unit": "sec",
+  "gold_stage": null,
+  "evaluation_stage": null,
+  "ignored_schema_ids": [],
+  "include_key_frames_only": true,
+  "verbose": false,
+  "verbose_frequency": 1000
+}

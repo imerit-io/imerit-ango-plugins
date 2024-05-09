@@ -1,0 +1,8 @@
+HOST = "https://plugin.imerit.ango.ai"
+PLUGIN_ID = "64931ff9d363200015c2062f"
+PLUGIN_SECRET = "c4df2c17-35c3-4141-b8c5-6a424735a0be"
+
+
+HOST = 'https://testapi.ango.ai'
+PLUGIN_ID = "6464fcc1d7682b0015f01094"
+PLUGIN_SECRET = "1350a78d-01da-4e00-8b3a-05ac6b69d521"
