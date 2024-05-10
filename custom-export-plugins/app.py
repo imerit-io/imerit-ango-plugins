@@ -22,8 +22,8 @@ load_dotenv()
 HOST = "https://plugin.imerit.ango.ai"
 
 # Load env variables
-PLUGIN_ID = os.getenv("ango_export_id")
-PLUGIN_SECRET = os.getenv("ango_export_secret")
+# PLUGIN_ID = os.getenv("ango_export_id")
+# PLUGIN_SECRET = os.getenv("ango_export_secret")
 # PLUGIN_ID = os.getenv("TESTING_PLUGIN_ID")
 # PLUGIN_SECRET = os.getenv("TESTING_PLUGIN_SECRET")
 
