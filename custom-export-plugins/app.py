@@ -26,6 +26,9 @@ HOST = "https://plugin.imerit.ango.ai"
 # PLUGIN_SECRET = os.getenv("ango_export_secret")
 # PLUGIN_ID = os.getenv("TESTING_PLUGIN_ID")
 # PLUGIN_SECRET = os.getenv("TESTING_PLUGIN_SECRET")
+HOST = os.environ['HOST']
+PLUGIN_ID = os.environ['PLUGIN_ID']
+PLUGIN_SECRET = os.environ['PLUGIN_SECRET']
 
 
 def plugin_caller(**data):
@@ -115,7 +118,7 @@ if __name__ == "__main__":
         id=PLUGIN_ID,
         secret=PLUGIN_SECRET,
         callback=plugin_caller,
-        # host=HOST,
+        host=HOST,
         version="v3",
     )
     run(plugin)
