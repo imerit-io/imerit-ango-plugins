@@ -1,0 +1,7 @@
+tqdm
+python-dotenv
+imerit-ango
+pydantic
+pandas
+Pillow
+boto3
