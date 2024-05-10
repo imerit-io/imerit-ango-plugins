@@ -8,7 +8,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Copy the .env file
-COPY .env .
+# COPY .env .
 
 # Create and activate a virtual environment
 RUN python -m venv /venv
