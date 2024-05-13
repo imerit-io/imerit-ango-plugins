@@ -108,8 +108,8 @@ jobs:
           env_vars: |
             CONNECTOR=REST
             HOST=https://imeritapi.ango.ai
-            PLUGIN_ID=65324e8a93bdc0001542c819
-            PLUGIN_SECRET=5f3b3528-b598-4489-8aff-b46e8d166a40
+            PLUGIN_ID=663e31f9cb498d00152635c5
+            PLUGIN_SECRET=3ab26757-344f-4ae8-a5c5-51932f1372a2
           no-allow-unauthenticated: false
 
       # If required, use the Cloud Run url output in later steps

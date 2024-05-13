@@ -106,5 +106,5 @@ if __name__ == "__main__":
         host=HOST,
         version="v3",
     )
-    run(plugin)
+    run(plugin, host=HOST)
     # run(plugin, host=HOST)
