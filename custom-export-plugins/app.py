@@ -5,27 +5,12 @@ import importlib.util
 import types
 import zipfile
 from io import BytesIO
-
-# from imerit_ango.sdk import SDK
-
+import warnings
 from imerit_ango.plugins import ExportPlugin, ExportResponse, run
-
-# from imerit_ango.plugins import ExportPlugin, run
-
-from dotenv import load_dotenv
 import sys
 import shutil
 
-load_dotenv()
 
-# HOST = "https://api.ango.ai"
-HOST = "https://plugin.imerit.ango.ai"
-
-# Load env variables
-# PLUGIN_ID = os.getenv("ango_export_id")
-# PLUGIN_SECRET = os.getenv("ango_export_secret")
-# PLUGIN_ID = os.getenv("TESTING_PLUGIN_ID")
-# PLUGIN_SECRET = os.getenv("TESTING_PLUGIN_SECRET")
 HOST = os.environ['HOST']
 PLUGIN_ID = os.environ['PLUGIN_ID']
 PLUGIN_SECRET = os.environ['PLUGIN_SECRET']
