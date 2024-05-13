@@ -99,7 +99,6 @@ def restart():
 
 
 if __name__ == "__main__":
-    # plugin_caller()
     plugin = ExportPlugin(
         id=PLUGIN_ID,
         secret=PLUGIN_SECRET,
@@ -108,4 +107,3 @@ if __name__ == "__main__":
         version="v3",
     )
     run(plugin, host=HOST)
-    # run(plugin, host=HOST)
