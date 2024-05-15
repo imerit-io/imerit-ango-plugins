@@ -12,9 +12,9 @@ from imerit_ango.sdk import SDK
 from imerit_ango.plugins import ExportPlugin, ExportResponse, run
 
 
-HOST = os.environ['HOST']
-PLUGIN_ID = os.environ['PLUGIN_ID']
-PLUGIN_SECRET = os.environ['PLUGIN_SECRET']
+HOST = os.environ["HOST"]
+PLUGIN_ID = os.environ["PLUGIN_ID"]
+PLUGIN_SECRET = os.environ["PLUGIN_SECRET"]
 
 
 def plugin_caller(**data):
