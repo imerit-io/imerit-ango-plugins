@@ -27,7 +27,7 @@ def wipro_convert(**data):
                 'objects':[]
             }
             
-            for ann in asset["tools"]:
+            for ann in asset["objects"]:
                 title = ann.get("title")
                 object_id = ann.get("objectId")
                 # handle sem seg annotations
