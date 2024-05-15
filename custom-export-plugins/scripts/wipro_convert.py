@@ -53,7 +53,7 @@ def wipro_convert(**data):
                     })
                 
             # write new json to file
-            with open(f"{output_folder}/{filename}.json", "w", encoding="utc-8") as f:
+            with open(f"{output_folder}/{filename}.json", "w") as f:
                 json.dump(new_json, f, indent=2)
     except Exception as e:
         logger.error(f"Error converting json: {e}")
