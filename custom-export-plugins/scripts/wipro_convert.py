@@ -29,18 +29,11 @@ def wipro_convert(**data):
             }
             for ann in asset.get("task").get("tools"):
                 title = ann.get("title")
-                object_id = ann.get("objectId")
                 # handle sem seg annotations
                 if ann.get("segmentation"):
                     for seg in ann.get("segmentation").get("zones"):
                         polygon = seg.get("region")
-                        new_json["objects"].append(
-                            {
-                                "label": title,
-                                "polygon": polygon,
-                                "OBJIDTEST": object_id,
-                            }
-                        )
+                        new_json["objects"].append({"label": title, "polygon": polygon})
                 # handle bbox annotations
                 elif ann.get("bounding-box"):
                     height = ann.get("bounding-box").get("height")
@@ -58,7 +51,6 @@ def wipro_convert(**data):
                                 [max_x, max_y],
                                 [min_x, max_y],
                             ],
-                            "OBJIDTEST": object_id,
                         }
                     )
 
