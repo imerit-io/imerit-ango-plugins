@@ -19,17 +19,14 @@ def wipro_convert(**data):
         os.makedirs(output_folder)
 
     try:
-        logger.info(f"{json_export.keys()}")
         for asset in json_export:
-            logger.info(f"{asset.keys()}")
             filename = asset["externalId"].split(".")[0]
             new_json = {
                 'imgHeight':asset.get("metadata").get("height"),
                 'imgWidth':asset.get("metadata").get("width"),
                 'objects':[]
             }
-            
-            for ann in asset["objects"]:
+            for ann in asset['task']['tools']:
                 title = ann.get("title")
                 object_id = ann.get("objectId")
                 # handle sem seg annotations
