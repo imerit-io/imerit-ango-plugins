@@ -63,8 +63,8 @@ def callback_function(**data):
     return ExportResponse(
         file=zip_data,
         file_name=zip_file_name,
-        storage_id="",
-        bucket=""
+        # storage_id="",
+        # bucket=""
     )
 
 if __name__ == "__main__":
