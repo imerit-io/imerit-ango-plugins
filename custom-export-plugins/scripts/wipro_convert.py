@@ -19,7 +19,9 @@ def wipro_convert(**data):
         os.makedirs(output_folder)
 
     try:
+        logger.info(f"{json_export.keys()}")
         for asset in json_export:
+            logger.info(f"{asset.keys()}")
             filename = asset["externalId"].split(".")[0]
             new_json = {
                 'imgHeight':asset.get("metadata").get("height"),
