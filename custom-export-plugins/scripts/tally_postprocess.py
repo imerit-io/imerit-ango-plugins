@@ -4,6 +4,7 @@ from imerit_ango.sdk import SDK
 import json
 import traceback
 import boto3
+import os
 
 # Plugin script developed by andrew.k@imerit.net
 def tally_postprocess(**data):
@@ -31,7 +32,11 @@ def tally_postprocess(**data):
                    storages_list, 
                    logger
                    )
-    return None
+    # create output folder if it doesn't exist
+    output_folder = os.getcwd() + f"/{project_id}"
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+    return output_folder
 
 class Post:
     @staticmethod
