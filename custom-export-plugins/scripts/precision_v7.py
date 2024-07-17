@@ -57,6 +57,8 @@ def precision(**data):
         for anns in asset["task"]["tools"]:
             if anns.get("segmentation", {}).get("zones"):
                 for zone in anns["segmentation"]["zones"]:
+                    if zone.get("region") == []:
+                        continue
                     new_annotation = {
                         "bounding_box": {"h": None, "w": None, "x": None, "y": None},
                         "id": None,
