@@ -4,6 +4,7 @@ import uuid
 import boto3
 from PIL import Image
 from io import BytesIO
+import hashlib
 
 def precision(**data):
     # get project id from data response
@@ -65,7 +66,8 @@ def precision(**data):
                         "name": None,
                         "polygon": {"paths": []},
                     }
-                    new_annotation["id"] = str(uuid.uuid4())
+                    # new_annotation["id"] = str(uuid.uuid4())
+                    new_annotation["id"] = None
                     new_annotation["name"] = anns["title"]
                     max_x = float("-inf")  # default num
                     max_y = float("-inf")  # default num
@@ -98,6 +100,13 @@ def precision(**data):
                     new_annotation["bounding_box"]["x"] = min_x
                     new_annotation["bounding_box"]["y"] = min_y
 
+                    # repeatable uuid number
+                    key = str(max_x + max_y + min_x + min_y)
+                    hash_object = hashlib.sha1(key.encode())
+                    hex_dig = hash_object.hexdigest()
+                    truncated_hex = hex_dig[:32]
+                    formatted_uuid = uuid.UUID(f'{truncated_hex[:8]}-{truncated_hex[8:12]}-{truncated_hex[12:16]}-{truncated_hex[16:20]}-{truncated_hex[20:32]}')
+                    new_annotation["id"] = str(formatted_uuid)
                     darwin_json["annotations"].append(new_annotation)
             else:
                 continue
