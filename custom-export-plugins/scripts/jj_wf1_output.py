@@ -12,13 +12,13 @@ load_dotenv()
 
 def jj_wf1_output(**data):
         logger = data.get("logger")
-        project_id = data.get("projectId")
-        json_export = data.get("jsonExport")
-        config_str = data.get("configJSON")
-        config = json.loads(config_str)
+        # project_id = data.get("projectId")
+        # json_export = data.get("jsonExport")
+        # config_str = data.get("configJSON")
+        # config = json.loads(config_str)
         test = os.getenv("TEST")
         logger.info(f"{test}")
-        return "custom-export-plugins/scripts/jj_support"
+        return #"custom-export-plugins/scripts/jj_support"
 #         try:
 #             batches = config.get("batches")
 #             experts = config.get("experts")
@@ -512,5 +512,5 @@ def jj_wf1_output(**data):
 #                         uploaded_file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
 #                         print(f'Uploaded file "{file_name}" to folder "{relative_path}" with ID: {uploaded_file.get("id")}')
 
-if __name__ == "__main__":
+if "name" == "__main__":
     jj_wf1_output()
