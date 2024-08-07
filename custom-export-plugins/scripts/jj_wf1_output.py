@@ -16,9 +16,8 @@ def jj_wf1_output(**data):
         json_export = data.get("jsonExport")
         config_str = data.get("configJSON")
         config = json.loads(config_str)
-        test = os.getenv("jj_ango_api_key")
+        test = os.getenv("TEST")
         logger.info(f"{test}")
-        logger.info(f"{config.get('batches')}")
         return "custom-export-plugins/scripts/jj_support"
 #         try:
 #             batches = config.get("batches")
