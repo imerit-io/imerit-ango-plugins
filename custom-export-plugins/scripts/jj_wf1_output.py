@@ -3,9 +3,9 @@ import numpy as np
 import json
 import pandas as pd
 from imerit_ango.sdk import SDK
-from google.oauth2 import service_account
-from googleapiclient.discovery import build
-from googleapiclient.http import MediaFileUpload 
+# from google.oauth2 import service_account
+# from googleapiclient.discovery import build
+# from googleapiclient.http import MediaFileUpload 
 
 
 def jj_wf1_output(**data):
@@ -30,8 +30,8 @@ def jj_wf1_output(**data):
             df = Functions.init_pandas_df()
             nrrd_dictionary = Functions.process_assets(ango_json_path, nrrd_dictionary_path)
             Functions.make_csv(df, nrrd_dictionary, expert)
-            expert_drive = os.getenv(f'{expert}_drive')
-            Functions.upload_output(expert_drive, expert)
+            # expert_drive = os.getenv(f'{expert}_drive')
+            # Functions.upload_output(expert_drive, expert)
             return f'steps_output/{expert}'
         except Exception as e:
             logger.error(f"Error: {e}")
