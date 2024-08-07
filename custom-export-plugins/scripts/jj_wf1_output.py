@@ -19,6 +19,7 @@ def jj_wf1_output(**data):
         test = os.getenv("jj_ango_api_key")
         logger.info(f"{test}")
         logger.info(f"{config.get('batches')}")
+        return "custom-export-plugins/scripts/jj_support"
 #         try:
 #             batches = config.get("batches")
 #             experts = config.get("experts")
