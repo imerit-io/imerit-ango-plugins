@@ -65,6 +65,8 @@ def alcon_conversions_second(**data):
                 toric_points[answer] = ann["point"]
 
         for key, value in toric_points.items():
+            if "Toric_dots" not in new_ann:
+                new_ann["Toric_dots"] = {}
             new_ann["Toric_dots"][key] = value
 
         with open(
