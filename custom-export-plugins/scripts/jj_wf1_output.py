@@ -26,7 +26,7 @@ def jj_wf1_output(**data):
             # for expert in experts:
             # ango_json_path = Functions.download_ango_json(expert, batches)
             ango_json_path = json_export
-            nrrd_dictionary_path = f"jj_support/step_4_1_output_nrrd_metadata_dict.json"
+            nrrd_dictionary_path = f"{os.getcwd()}/scripts/step_4_1_output_nrrd_metadata_dict.json"
             df = Functions.init_pandas_df()
             nrrd_dictionary = Functions.process_assets(ango_json_path, nrrd_dictionary_path)
             Functions.make_csv(df, nrrd_dictionary, expert)
@@ -34,8 +34,8 @@ def jj_wf1_output(**data):
             # Functions.upload_output(expert_drive, expert)
         except Exception as e:
             logger.error(f"Error: {e}")
-            return "jj_support/empty"
-        return f'jj_support/steps_output/{expert}'
+            return f"{os.getcwd()}/scripts/empty"
+        return f'{os.getcwd()}/scripts/steps_output/{expert}'
 
 class Functions:
     
@@ -334,8 +334,8 @@ class Functions:
                             "Treatment volume type (only for R series)"
                         ] = main_class.get("answer", "")
 
-        with open("jj_support/steps_output/TEST.json", "w") as file:
-            json.dump(nrrd_dictionary, file, indent=4)
+        # with open(f"{}/steps_output/TEST.json", "w") as file:
+        #     json.dump(nrrd_dictionary, file, indent=4)
 
         return nrrd_dictionary
 
@@ -440,9 +440,9 @@ class Functions:
         for key, value in data.items():
             new_df = pd.DataFrame(value)
             new_df_sorted = new_df.sort_values(by="Study_id_date", ascending=True)
-            if not os.path.exists(f"jj_support/steps_output/{expert}/{key}"):
-                os.makedirs(f"jj_support/steps_output/{expert}/{key}")
-            new_df_sorted.to_csv(f"jj_support/steps_output/{expert}/{key}/{key}_output.csv", index=False)
+            if not os.path.exists(f"{os.getcwd()}/scripts/steps_output/{expert}/{key}"):
+                os.makedirs(f"{os.getcwd()}/scripts/steps_output/{expert}/{key}")
+            new_df_sorted.to_csv(f"{os.getcwd()}/scripts/steps_output/{expert}/{key}_output.csv", index=False)
     
     # @staticmethod  
     # def download_ango_json(expert, batches):
