@@ -1,7 +1,5 @@
 .env
 scripts/__pycache__
-*.zip
-*.json
 testing_precision.py
 scripts/test_extend.py
 *.db
