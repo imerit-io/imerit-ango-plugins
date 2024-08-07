@@ -1,6 +1,6 @@
 tqdm
 python-dotenv
-imerit-ango
+imerit-ango==1.3.13
 pydantic
 pandas
 Pillow
