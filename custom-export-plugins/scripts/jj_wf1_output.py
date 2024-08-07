@@ -32,10 +32,11 @@ def jj_wf1_output(**data):
             Functions.make_csv(df, nrrd_dictionary, expert)
             # expert_drive = os.getenv(f'{expert}_drive')
             # Functions.upload_output(expert_drive, expert)
-            return f'steps_output/{expert}'
+            
         except Exception as e:
             logger.error(f"Error: {e}")
             return "scripts/jj_support/empty"
+        return f'steps_output/{expert}'
 
 class Functions:
     
