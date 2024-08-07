@@ -21,7 +21,7 @@ COPY app.py .
 COPY scripts /app/scripts
 
 # Copy the folder into the image
-COPY scripts/jj_support /app/scripts/jj_support
+COPY jj_support /app/jj_support
 
 # When plugin run with rest connector default port is 8080
 EXPOSE 8080

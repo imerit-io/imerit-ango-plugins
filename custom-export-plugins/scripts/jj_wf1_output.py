@@ -26,17 +26,16 @@ def jj_wf1_output(**data):
             # for expert in experts:
             # ango_json_path = Functions.download_ango_json(expert, batches)
             ango_json_path = json_export
-            nrrd_dictionary_path = f"{os.getcwd()}/scripts/jj_support/step_4_1_output_nrrd_metadata_dict.json"
+            nrrd_dictionary_path = f"jj_support/step_4_1_output_nrrd_metadata_dict.json"
             df = Functions.init_pandas_df()
             nrrd_dictionary = Functions.process_assets(ango_json_path, nrrd_dictionary_path)
             Functions.make_csv(df, nrrd_dictionary, expert)
             # expert_drive = os.getenv(f'{expert}_drive')
             # Functions.upload_output(expert_drive, expert)
-            
         except Exception as e:
             logger.error(f"Error: {e}")
-            return "scripts/jj_support/empty"
-        return f'steps_output/{expert}'
+            return "jj_support/empty"
+        return f'jj_support/steps_output/{expert}'
 
 class Functions:
     
@@ -335,7 +334,7 @@ class Functions:
                             "Treatment volume type (only for R series)"
                         ] = main_class.get("answer", "")
 
-        with open("steps_output/TEST.json", "w") as file:
+        with open("jj_support/steps_output/TEST.json", "w") as file:
             json.dump(nrrd_dictionary, file, indent=4)
 
         return nrrd_dictionary
@@ -441,9 +440,9 @@ class Functions:
         for key, value in data.items():
             new_df = pd.DataFrame(value)
             new_df_sorted = new_df.sort_values(by="Study_id_date", ascending=True)
-            if not os.path.exists(f"steps_output/{expert}/{key}"):
-                os.makedirs(f"steps_output/{expert}/{key}")
-            new_df_sorted.to_csv(f"steps_output/{expert}/{key}/{key}_output.csv", index=False)
+            if not os.path.exists(f"jj_support/steps_output/{expert}/{key}"):
+                os.makedirs(f"jj_support/steps_output/{expert}/{key}")
+            new_df_sorted.to_csv(f"jj_support/steps_output/{expert}/{key}/{key}_output.csv", index=False)
     
     # @staticmethod  
     # def download_ango_json(expert, batches):
@@ -474,50 +473,50 @@ class Functions:
 
     #     return ango_json_path    
 
-    @staticmethod
-    def create_drive_folder(service, name, parent_id=None):
-        folder_metadata = {
-            'name': name,
-            'mimeType': 'application/vnd.google-apps.folder'
-        }
-        if parent_id:
-            folder_metadata['parents'] = [parent_id]
-        folder = service.files().create(body=folder_metadata, fields='id').execute()
-        return folder.get('id')
+    # @staticmethod
+    # def create_drive_folder(service, name, parent_id=None):
+    #     folder_metadata = {
+    #         'name': name,
+    #         'mimeType': 'application/vnd.google-apps.folder'
+    #     }
+    #     if parent_id:
+    #         folder_metadata['parents'] = [parent_id]
+    #     folder = service.files().create(body=folder_metadata, fields='id').execute()
+    #     return folder.get('id')
 
-    @staticmethod
-    def upload_output(expert_drive, expert):
-        # Path to the service account key file
-        SERVICE_ACCOUNT_FILE = 'ango-plugins-34d6441a8f2b.json'
+    # @staticmethod
+    # def upload_output(expert_drive, expert):
+    #     # Path to the service account key file
+    #     SERVICE_ACCOUNT_FILE = 'ango-plugins-34d6441a8f2b.json'
 
-        # Define the required scopes
-        SCOPES = ['https://www.googleapis.com/auth/drive.file']
+    #     # Define the required scopes
+    #     SCOPES = ['https://www.googleapis.com/auth/drive.file']
         
-        # Authenticate and create the service
-        credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-        service = build('drive', 'v3', credentials=credentials)
+    #     # Authenticate and create the service
+    #     credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
+    #     service = build('drive', 'v3', credentials=credentials)
 
-        # Specify the parent folder ID where you want to create subfolders and upload the files
-        parent_folder_id = expert_drive
+    #     # Specify the parent folder ID where you want to create subfolders and upload the files
+    #     parent_folder_id = expert_drive
 
-        # Upload all files in the expert directory, creating subfolders as needed
-        for root, dirs, files in os.walk(f'steps_output/{expert}'):
-            for dir_name in dirs:
-                folder_path = os.path.join(root, dir_name)
-                relative_path = os.path.relpath(folder_path, f'steps_output/{expert}')
-                folder_id = Functions.create_drive_folder(service, relative_path, parent_folder_id)
+    #     # Upload all files in the expert directory, creating subfolders as needed
+    #     for root, dirs, files in os.walk(f'jj_support/steps_output/{expert}'):
+    #         for dir_name in dirs:
+    #             folder_path = os.path.join(root, dir_name)
+    #             relative_path = os.path.relpath(folder_path, f'jj_support/steps_output/{expert}')
+    #             folder_id = Functions.create_drive_folder(service, relative_path, parent_folder_id)
                 
-                for file_name in os.listdir(folder_path):
-                    file_path = os.path.join(folder_path, file_name)
+    #             for file_name in os.listdir(folder_path):
+    #                 file_path = os.path.join(folder_path, file_name)
                     
-                    if os.path.isfile(file_path):
-                        file_metadata = {
-                            'name': file_name,
-                            'parents': [folder_id]
-                        }
-                        media = MediaFileUpload(file_path, resumable=True)
-                        uploaded_file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
-                        print(f'Uploaded file "{file_name}" to folder "{relative_path}" with ID: {uploaded_file.get("id")}')
+    #                 if os.path.isfile(file_path):
+    #                     file_metadata = {
+    #                         'name': file_name,
+    #                         'parents': [folder_id]
+    #                     }
+    #                     media = MediaFileUpload(file_path, resumable=True)
+    #                     uploaded_file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
+    #                     print(f'Uploaded file "{file_name}" to folder "{relative_path}" with ID: {uploaded_file.get("id")}')
 
 if "name" == "__main__":
     jj_wf1_output()
