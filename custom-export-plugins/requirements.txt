@@ -1,7 +1,12 @@
 tqdm
 python-dotenv
-imerit-ango==1.3.13
+imerit-ango
 pydantic
 pandas
 Pillow
 boto3
+numpy
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+google-api-python-client
