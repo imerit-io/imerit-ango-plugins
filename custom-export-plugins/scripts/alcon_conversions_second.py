@@ -79,5 +79,6 @@ def alcon_conversions_second(**data):
     logger.info("script completed. zipping output")
     return output_folder
 
-if "name" == "__main__":
+# if "name" == "__main__":
+if __name__ == "__main__":
     alcon_conversions_second()
