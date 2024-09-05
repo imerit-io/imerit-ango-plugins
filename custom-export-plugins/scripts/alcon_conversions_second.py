@@ -59,10 +59,18 @@ def alcon_conversions_second(**data):
                     new_ann["Keypoint_pairs"] = {}
                 new_ann[ann["title"]][answer] = ann["point"]
             elif ann.get("title") == "Toric_dots":
-                answer = ann["classifications"][0]["answer"]
-                if "Toric_dots" not in new_ann:
-                    new_ann["Toric_dots"] = {}
-                toric_points[answer] = ann["point"]
+                # answer = ann["classifications"][0]["answer"]
+                # if "Toric_dots" not in new_ann:
+                #     new_ann["Toric_dots"] = {}
+                # toric_points[answer] = ann["point"]
+                try:
+                    answer = ann["classifications"][0]["answer"]
+                    if "Toric_dots" not in new_ann:
+                        new_ann["Toric_dots"] = {}
+                    toric_points[answer] = ann["point"]
+                except Exception as e:
+                    # print(ann["classifications"])
+                    logger.info(f'Toric Dots Missing Info | External ID:  {external_id}  | Object ID: {ann["objectId"]}')
 
         for key, value in toric_points.items():
             if "Toric_dots" not in new_ann:
