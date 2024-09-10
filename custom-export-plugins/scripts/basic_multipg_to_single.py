@@ -42,7 +42,7 @@ def basic_multipg_to_single(**data):
                     "tools": []
                }
             new_annotation = annotation.copy()
-            del new_annotation["page"]
+            new_annotation["total_assets_for_assetId"] = len(dataset)
             collector[annotation["page"]]["tools"].append(new_annotation)
         for images in collector.values():
             filename = images["externalId"] + ".json"
