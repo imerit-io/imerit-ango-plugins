@@ -46,7 +46,7 @@ def basic_multipg_to_single(**data):
             del new_annotation["page"]
             del new_annotation["metadata"]
             new_annotation["page"] = annotation["page"] + 1
-            collector[annotation["page"]]["tools"].append(annotation)
+            collector[annotation["page"]]["tools"].append(new_annotation)
         for images in collector.values():
             filename = images["externalId"] + ".json"
             with open(f"{output_folder}/{filename}", "w") as output:
