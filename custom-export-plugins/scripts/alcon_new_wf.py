@@ -5,20 +5,20 @@ import copy
 
 
 def alcon_new_wf(**data):
-    project_id = data.get("projectId")
-    # project_id = "1234"
+    # project_id = data.get("projectId")
+    project_id = "1234"
 
     # Get json export from data response
-    json_export = data.get("jsonExport")
-    # json_path = "/Users/home/Downloads/New_WF-task-export-2024-09-16-17_52_50_GMT.json"
-    # with open(json_path, 'r') as file:
-    #     json_export = json.load(file)
+    # json_export = data.get("jsonExport")
+    json_path = "/Users/home/Downloads/New_WF-task-export-2024-09-17-12_29_56_GMT.json"
+    with open(json_path, 'r') as file:
+        json_export = json.load(file)
 
     # get logger from data response
-    logger = data.get("logger")
+    # logger = data.get("logger")
 
-    # log message example
-    logger.info(f"running alcon_conversions_second script on Project: {project_id}")
+    # # log message example
+    # logger.info(f"running alcon_conversions_second script on Project: {project_id}")
 
     # create output folder if it doesn't exist
     output_folder = os.getcwd() + f"/{project_id}"
@@ -42,15 +42,20 @@ def alcon_new_wf(**data):
                     # new_ann[ann["title"]] = polygon
                     regions.append(polygon)
                 if ann["title"] in new_ann:
-                    new_ann[ann["title"]].append(regions)
-                else:
-                    new_ann[ann["title"]] = [regions]
+                    new_ann[ann["title"]]["annotations"].append(regions)
+                elif ann["title"] not in new_ann:
+                    # new_ann[ann["title"]]["annotations"] = [regions]
+                    new_ann[ann["title"]] = {"annotations": [regions]}
+                # if ann["classifications"] != []:
+                #     title = ann["classifications"][0]["title"]
+                #     answer = ann["classifications"][0]["answer"]
+                #     new_ann[ann["title"]].update({title: answer})
                 
             if "point" in ann:
                 if ann["title"] in new_ann:
-                    new_ann[ann["title"]].append(ann["point"])
+                    new_ann[ann["title"]]["annotations"].append(ann["point"])
                 else:
-                    new_ann[ann["title"]] = [ann["point"]]
+                    new_ann[ann["title"]] = {"annotations": [ann["point"]]}
                 
         # Process classifications recursively
         if "classifications" in asset["task"]:
