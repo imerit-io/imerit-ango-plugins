@@ -63,7 +63,7 @@ def torc_output_multipage(**data):
                         "updatedBy": updated_by,
                         "totalDuration": total_duration,
                         "tools": [],
-                        "classifications": [classifications],
+                        "classifications": classifications,
                         "relations": []
                     }
                }
