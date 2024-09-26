@@ -43,6 +43,7 @@ def torc_output_multipage(**data):
         updated_at = asset["task"]["updatedAt"]
         updated_by = asset["task"]["updatedBy"]
         total_duration = asset["task"]["totalDuration"]
+        classifications = asset["task"]["classifications"]
         for annotation in asset["task"]["tools"]:
             dataset = asset["dataset"]
             dataset_reference = dataset[annotation["page"]]
@@ -62,7 +63,7 @@ def torc_output_multipage(**data):
                         "updatedBy": updated_by,
                         "totalDuration": total_duration,
                         "tools": [],
-                        "classifications": [],
+                        "classifications": [classifications],
                         "relations": []
                     }
                }
@@ -70,28 +71,28 @@ def torc_output_multipage(**data):
             del new_annotation["page"]
             collector[annotation["page"]]["task"]["tools"].append(new_annotation)
             
-        for classif in asset["task"]["classifications"]:
-            if classif["page"] not in collector:
-                collector[classif["page"]] = {
-                    "asset": dataset_reference,
-                    "externalId": filename,
-                    "metadata": asset["metadata"],
-                    "batches": asset["batches"],
-                    "task": {
-                        "taskId": task_id,
-                        "stage": stage,
-                        "stageId": stage_id,
-                        "updatedAt": updated_at,
-                        "updatedBy": updated_by,
-                        "totalDuration": total_duration,
-                        "tools": [],
-                        "classifications": [],
-                        "relations": []
-                    }
-                }
-            new_classif = classif.copy()
-            del new_classif["page"]
-            collector[classif["page"]]["task"]["classifications"].append(new_classif)
+        # for classif in asset["task"]["classifications"]:
+        #     if classif["page"] not in collector:
+        #         collector[classif["page"]] = {
+        #             "asset": dataset_reference,
+        #             "externalId": filename,
+        #             "metadata": asset["metadata"],
+        #             "batches": asset["batches"],
+        #             "task": {
+        #                 "taskId": task_id,
+        #                 "stage": stage,
+        #                 "stageId": stage_id,
+        #                 "updatedAt": updated_at,
+        #                 "updatedBy": updated_by,
+        #                 "totalDuration": total_duration,
+        #                 "tools": [],
+        #                 "classifications": [],
+        #                 "relations": []
+        #             }
+        #         }
+        #     new_classif = classif.copy()
+        #     del new_classif["page"]
+        #     collector[classif["page"]]["task"]["classifications"].append(new_classif)
         
         for images in collector.values():
             output_file.append(images)
