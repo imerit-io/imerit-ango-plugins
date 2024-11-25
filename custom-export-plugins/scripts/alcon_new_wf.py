@@ -72,16 +72,13 @@ def alcon_new_wf(**data):
                 if ann["title"] not in new_ann:
                     new_ann[ann["title"]] = [
                         {
-                            "annotations": ann["polyline"],
+                            "annotations": [ann["polyline"]],
                             "classifications": None
                         }
                     ]
                 else:
-                    new_ann[ann["title"]].append(
-                        {
-                            "annotations": ann["polyline"],
-                            "classifications": None
-                        }
+                    new_ann[ann["title"]["annotations"]].append(
+                         ann["polyline"]
                     )
             # adjust polygon anns if necessary
             if "segmentation" in ann:
