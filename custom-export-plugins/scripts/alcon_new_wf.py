@@ -77,8 +77,8 @@ def alcon_new_wf(**data):
                         }
                     ]
                 else:
-                    new_ann[ann["title"]["annotations"]].append(
-                         ann["polyline"]
+                    new_ann[ann["title"]][0]["annotations"].append(
+                        ann["polyline"]
                     )
             # adjust polygon anns if necessary
             if "segmentation" in ann:
